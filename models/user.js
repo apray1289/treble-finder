@@ -2,9 +2,7 @@ module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     firstName: {
       type: DataTypes.STRING,
-
       allowNull: false,
-
       validate: {
         len: [1]
       }
@@ -26,20 +24,6 @@ module.exports = function (sequelize, DataTypes) {
         len: [4]
       }
     },
-    area: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
-    talentList: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1]
-      }
-    },
     genreList: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -59,6 +43,16 @@ module.exports = function (sequelize, DataTypes) {
 
 
   });
+  User.associate = function (models) {
+    User.hasMany(models.Skill);
+  };
+  User.associate = function (models) {
+    belongsTo(models.Area, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return User;
 };
