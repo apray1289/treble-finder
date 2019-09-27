@@ -47,7 +47,15 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-
+    soundcloudLink: {
+      type: DataTypes.STRING,
+    },
+    bio: {
+      type: DataTypes.TEXT,
+    },
+    image: {
+      type: DataTypes.STRING
+    }
 
 
   });
