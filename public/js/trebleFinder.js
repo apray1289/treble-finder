@@ -1,5 +1,5 @@
 
-  $(".registerSubmit").on("submit", function(event) {
+  $("#registerSubmit").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
@@ -28,3 +28,27 @@
       }
     );
   });
+
+  $("#talentSearchSubmit").on("submit", function(event) {
+    // Make sure to preventDefault on a submit event.
+    event.preventDefault();
+
+    var newTalentSearch = {
+      areaSearch: $("#areaSearch").val().trim(),
+      talentSearch: $("#talentSearch").val().trim(),
+      genreSearch: $("#genreSearch").val().trim()
+    };
+
+    // Send the POST request.
+    $.ajax("/api/talentsearch", {
+      type: "Post",
+      data: newTalentSearch
+    }).then(
+      function() {
+        console.log("sent new talent search");
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
+  
