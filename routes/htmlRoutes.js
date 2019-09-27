@@ -4,9 +4,14 @@ module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     db.User.findAll({}).then(function(dbUsers) {
-      res.render("home", {
-        msg: "Welcome!",
-        Talents: dbUsers
+      res.render("home", {});
+    });
+  });
+
+  app.get("/talent", function(req, res) {
+    db.User.findAll({}).then(function(dbUsers) {
+      res.render("talentpage", {
+        Users: dbUsers
       });
     });
   });
