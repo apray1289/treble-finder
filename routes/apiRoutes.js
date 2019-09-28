@@ -8,6 +8,19 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/skills", function(req, res) {
+    db.Skill.findAll({}).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
+  });
+
+
+  app.get("/api/areas", function(req, res) {
+    db.Area.findAll({}).then(function(dbUsers) {
+      res.json(dbUsers);
+    });
+  });
+
   // Create a new User
   app.post("/api/Users", function(req, res) {
     db.User.create(req.body).then(function(dbUser) {
