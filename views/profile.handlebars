@@ -20,9 +20,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Leave A Review</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">My Inbox</a>
-            </li>
         </ul>
         <ul class="nav justify-content-end">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -34,14 +31,33 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-sm">
-            One of three columns
+        {{#each userImage}}
+        <div class="col-md-6">
+            {{this.image}}
         </div>
-        <div class="col-sm">
-            One of three columns
+        {{/each}}
+        <div class="col-md-6">
+            Bio
         </div>
-        <div class="col-sm">
-            One of three columns
+    </div>
+    <div class="row">
+        {{#each userEmail}}{{#each userPhone}}
+        <div class="col-md-6">
+           <span>{{this.firstName}}'s Email: {{this.email}}</span> <span>{{this.firstName}}'s Phone:{{this.phone}}</span>
+        </div>
+        {{/each}}{{/each}}
+        <div class="col-md-6">
+            Talents
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            Genres
+        </div>
+        <div class="col-md-6">
+            Areas
         </div>
     </div>
 </div>
+
+<button type="button" class="btn btn-secondary"><a href="mailto:{{this.email}}?Subject=Hello%20again" target="_top">Send Email</a></button>
