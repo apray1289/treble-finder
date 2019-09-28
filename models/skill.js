@@ -5,8 +5,7 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         },
         experience: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.INTEGER
         }
     });
 
