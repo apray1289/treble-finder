@@ -1,4 +1,4 @@
-
+$(document).ready(function(){
   $("#registerSubmit").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
@@ -29,26 +29,29 @@
     );
   });
 
-  $("#talentSearchSubmit").on("submit", function(event) {
+  $("#searchTalentSubmit").on("submit", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
     var newTalentSearch = {
-      areaSearch: $("#areaSearch").val().trim(),
-      talentSearch: $("#talentSearch").val().trim(),
-      genreSearch: $("#genreSearch").val().trim()
+      areaSearch: $("#searchArea").val().trim(),
+      talentSearch: $("#searchTalent").val().trim(),
+      genreSearch: $("#searchGenre").val().trim(),
     };
 
     // Send the POST request.
-    $.ajax("/api/talentsearch", {
-      type: "Post",
+    $.ajax("/api/newuser", {
+      type: "POST",
       data: newTalentSearch
     }).then(
       function() {
-        console.log("sent new talent search");
+        console.log("sent new user");
         // Reload the page to get the updated list
         location.reload();
       }
     );
   });
-  
+
+
+});
+ 
