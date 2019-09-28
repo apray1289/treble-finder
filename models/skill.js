@@ -9,13 +9,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false
         }
     });
-    Skill.associate = function (models) {
-        Skill.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
 
     return Skill;
 };
