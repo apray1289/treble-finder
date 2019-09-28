@@ -36,6 +36,12 @@ module.exports = function (sequelize, DataTypes) {
     },
     image: {
       type: DataTypes.STRING
+    },
+    createdAt: {
+      type: DataTypes.DATE
+    },
+    updatedAt: {
+      type: DataTypes.DATE
     }
   });
   User.associate = function (models) {

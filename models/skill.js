@@ -6,6 +6,12 @@ module.exports = function (sequelize, DataTypes) {
         },
         experience: {
             type: DataTypes.INTEGER
+        },
+        createdAt: {
+            type: DataTypes.DATE
+        },
+        updatedAt: {
+            type: DataTypes.DATE
         }
     });
 
