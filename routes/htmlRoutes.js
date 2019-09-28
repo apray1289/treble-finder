@@ -10,8 +10,21 @@ module.exports = function(app) {
 
   app.get("/talent", function(req, res) {
     db.User.findAll({}).then(function(dbUsers) {
-      res.render("talentpage", {
-        Users: dbUsers
+      var users = dbUsers;
+      console.log(users.length);
+      db.Area.findAll({}).then(function(dbAreas) {
+        var areas = dbAreas;
+        db.Skill.findAll({}).then(function(dbSkills) {
+          var skills = dbSkills;
+          db.Genre.findAll({}).then(function(dbGenres) {
+            res.render("talentpage", {
+              users: users,
+              areas: areas,
+              talents: skills,
+              genres: dbGenres
+            });
+          })[]
+        });
       });
     });
   });
