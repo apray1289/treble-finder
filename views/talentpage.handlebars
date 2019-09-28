@@ -30,40 +30,42 @@
     </div>
 </nav>
 
+
 <div class="btn-group">
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="dropdownMenu1"
+        aria-haspopup="true" aria-expanded="false">
         Search By Location:
     </button>
-    {{#each areas}}
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">{{area}}</a>
-        <div class="dropdown-divider"></div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        {{#each areas}}
+        <a class="dropdown-item" href="#">{{name}}</a>
+        {{/each}}
         <a class="dropdown-item" href="#">All</a>
     </div>
-    {{/each}}
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="dropdownMenu2"
+        aria-haspopup="true" aria-expanded="false">
         Search By Talent:
     </button>
-    {{#each talents}}
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">{{talent}}</a>
-        <div class="dropdown-divider"></div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+        {{#each talents}}
+        <a class="dropdown-item" href="#">{{name}}</a>
+        {{/each}}
         <a class="dropdown-item" href="#">All</a>
     </div>
-    {{/each}}
-    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
+</div>
+<div class="btn-group">
+    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" id="dropdownMenu3"
+        aria-haspopup="true" aria-expanded="false">
         Search By Genre:
     </button>
-    {{#each genres}}
-    <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">{{genre}}</a>
-        <div class="dropdown-divider"></div>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu3">
+        {{#each genres}}
+        <a class="dropdown-item" href="#">{{name}}</a>
+        {{/each}}
         <a class="dropdown-item" href="#">All</a>
     </div>
-    {{/each}}
 </div>
 
 
