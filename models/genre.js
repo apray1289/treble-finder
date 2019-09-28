@@ -4,12 +4,5 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.STRING
         }
     });
-    Genre.associate = function (models) {
-        Genre.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
-    };
     return Genre;
 };
