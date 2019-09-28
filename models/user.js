@@ -24,6 +24,13 @@ module.exports = function (sequelize, DataTypes) {
         len: [4]
       }
     },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
     bio: {
       type: DataTypes.TEXT
     },
@@ -40,6 +47,12 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false
       }
     });
+  };
+  User.associate = function (models) {
+    User.hasMany(models.Area);
+  };
+  User.associate = function (models) {
+    User.hasMany(models.Genre);
   };
 
   return User;
