@@ -30,8 +30,8 @@ module.exports = function(app) {
   });
 
   // Load Talent page and pass in an Talent by id
-  app.get("/user/:id", function(req, res) {
-    db.Talent.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
+  app.get("/profile/:id", function(req, res) {
+    db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
       res.render("talentPage", {
         Users: dbUser
       });
