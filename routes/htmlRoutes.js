@@ -23,7 +23,7 @@ module.exports = function(app) {
               talents: skills,
               genres: dbGenres
             });
-          })[]
+          });
         });
       });
     });
