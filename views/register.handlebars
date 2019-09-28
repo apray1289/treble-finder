@@ -3,8 +3,8 @@
     <li class="nav-item">
       <a class="nav-link active" href="#">Sign Up</a>
     </li>
-  
-   
+
+
     <li class="nav-item">
       <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
     </li>
@@ -19,52 +19,60 @@
         <input type="firstname" class="form-control" id="inputFirstName" placeholder="Alexander">
       </div>
       <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="userLastName">Last Name</label>
-        <input type="lastname" class="form-control" id="inputLastName" placeholder="Hamilton">
-      </div>
-      <div class="form-group">
-        <label for="userPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-      <div class="form-row">
         <div class="form-group col-md-6">
-          <label for="userEmail">Email</label>
-          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="userPhone">Phone</label>
-          <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
-        </div>
-        <div class="form-group col-md-6">
-          <label for="userArea">Available Locations</label>
-          <select id="inputArea" class="form-control" multiple>
-            <option selected>Dallas Fort Worth</option>
-            <option>Only Dallas Area</option>
-            <option>Only Fort Worth Area</option>
-            <option>Denton</option>
-            <option>Austin</option>
-          </select>
+          <label for="userLastName">Last Name</label>
+          <input type="lastname" class="form-control" id="inputLastName" placeholder="Hamilton">
         </div>
         <div class="form-group">
-          <label for="talentList">List Your Talents</label>
-          <textarea class="form-control" id="inputTalentList" placeholder="Drums, Guitar, Triangle, etc."
-            rows="3"></textarea>
+          <label for="userPassword">Password</label>
+          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
         </div>
-        <div class="form-group">
-          <label for="genreList">What Genres Do You Play?</label>
-          <textarea class="form-control" id="inputGenreList" placeholder="Jazz, Rock, R&B, etc." rows="3"></textarea>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="userEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="userPhone">Phone</label>
+            <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="userArea">Available Locations</label>
+            <select id="inputArea" class="form-control" multiple>
+              {{#each areas}}
+              <option value="{{this.area}}">{{this.area}}</option>
+              {{/each}}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="talentList">List Your Talents</label>
+            <select class="form-control" id="inputTalentList" multiple>
+              {{#each skills}}
+              <option value="{{this.skill}}">{{this.skill}}</option>
+              {{/each}}
+            </select>
+
+          </div>
+          <div class="form-group">
+            <label for="genreList">What Genres Do You Play?</label>
+            <select class="form-control" id="inputGenreList" multiple>
+              {{#each genres}}
+              <option value="{{this.genre}}">{{this.genre}}</option>
+              {{/each}}
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="userBio">Tell Us About Yourself</label>
+            <textarea class="form-control" id="inputBio" placeholder="I have been performing for 3 years..."
+              rows="3"></textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="userSound">SoundCloud</label>
+            <input type="link" class="form-control" id="inputSound" placeholder="www.mysoundcloudlink.com">
+          </div>
         </div>
-        <div class="form-group">
-          <label for="userBio">Tell Us About Yourself</label>
-          <textarea class="form-control" id="inputBio" placeholder="I have been performing for 3 years..." rows="3"></textarea>
-        </div>
-       <div class="form-group col-md-6">
-          <label for="userSound">Email</label>
-          <input type="link" class="form-control" id="inputSound" placeholder="www.mysoundcloudlink.com">
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary" id="registerSubmit">Sign Up</button>
+        <button type="submit" class="btn btn-primary" id="registerSubmit">Sign Up</button>
   </form>
 
 </div>
