@@ -1,59 +1,151 @@
-$(document).ready(function(){
+/* eslint-disable prettier/prettier */
+/* eslint-disable quotes */
+$(document).ready(function() {
 
-  $("#registerSubmit").on("submit", function(event) {
+  function isInvalidForm () {
+    
+
+    if (!$("#inputFirstName").val()) {
+      return {message: "Missing first name!", id: '#inputFirstName' };
+    };
+
+    if (!$("#inputPassword").val()) {
+      return {message: "Missing password!", id: '#inputPassword' };
+    };
+
+    if (!$("#inputEmail").val()) {
+      return {message: "Missing email address!", id: '#inputEmail' };
+    };
+
+    if (!$("#inputPhone").val()) {
+      return {message: "Missing phone number!", id: '#inputPhone' };
+    };
+
+    if (areas().length === 0) {
+      return {message: "Missing available locations!", id: '#inputGenreList' };
+    }
+
+    if (skills().length === 0) {
+      return {message: "Missing musical talents!", id: '#inputTalentList' };
+    }
+
+    if (genres().length === 0) {
+      return {message: "Missing musical genres!", id: '#inputGenreList' };
+    }
+
+    return null;
+  }
+
+  var areas = function() {
+    var results = [];
+    $.each($("#inputArea option:selected"), function() {
+      results.push($(this).val());
+    });
+
+    return results;
+  }
+
+  var skills = function() {
+    var results = [];
+    $.each($("#inputTalentList option:selected"), function() {
+      results.push($(this).val());
+    });
+
+    return results;
+  }
+    
+  var genres = function() {
+    var results = [];
+    $.each($("#inputGenreList option:selected"), function() {
+      results.push($(this).val());
+    });
+
+    return results;
+  }
+
+
+  $("#registerSubmit").on("click", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
+    var errObj = isInvalidForm();
+
+    if (errObj){
+      $('.modal-body').text(errObj.message);
+      $("#myModal").modal();      
+    }
+
+    if (errObj) {
+      $(errObj.id).focus();
+      return;
+    }
+
     var newUser = {
-      firstName: $("#inputFirstName").val().trim(),
-      lastName: $("#inputLastName").val().trim(),
-      password: $("#inputPassword").val().trim(),
-      email: $("#inputEmail").val().trim(),
-      phone: $("#inputPhone").val().trim(),
-      availability: $("#inputArea").val().trim(),
-      talents: $("#inputTalentList").val().trim(),
-      genres: $("#inputGenreList").val().trim(),
-      bio: $("#inputBio").val().trim(),
-      soundLink: $("#inputSound").val().trim()
+      firstName: $("#inputFirstName").val(),
+      lastName: $("#inputLastName").val(),
+      password: $("#inputPassword").val(),
+      email: $("#inputEmail").val(),
+      phone: $("#inputPhone").val(),
+      areas: areas().join(","),
+      talents: skills().join(","),
+      genres: genres().join(","),
+      bio: $("#inputBio").val(),
+      soundLink: $("#inputSound").val()
     };
 
     // Send the POST request.
     $.ajax("/api/newuser", {
       type: "POST",
       data: newUser
-    }).then(
-      function() {
-        console.log("sent new user");
-        // Reload the page to get the updated list
-        location.reload();
+    }).then(function(data) {
+      console.log("sent new user");
+      // Reload the page to get the updated list
+      if (data.error) {        
+        $('#inputEmail').focus();
+        alert(data.error);
+      } else {
+        
       }
-    );
+    }).fail(function(err) {
+      alert(err);
+    });
   });
 
-  $("#searchTalentSubmit").on("submit", function(event) {
+  $("#searchTalentSubmit").on("click", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
+    var areas = [];
+    $.each($("#searchArea option:selected"), function() {
+      areas.push($(this).val());
+    });
+    
+    var skills = [];
+    $.each($("#searchTalent option:selected"), function() {
+      skills.push($(this).val());
+    });
+    
+    var genres = [];
+    $.each($("#searchGenre option:selected"), function() {
+      genres.push($(this).val());
+    });
+
     var newTalentSearch = {
-      areaSearch: $("#searchArea").val().trim(),
-      talentSearch: $("#searchTalent").val().trim(),
-      genreSearch: $("#searchGenre").val().trim(),
+      areas: areas,
+      talents: skills,
+      genres: genres
     };
 
     // Send the POST request.
     $.ajax("/api/newuser", {
       type: "POST",
       data: newTalentSearch
-    }).then(
-      function() {
-        console.log("sent new user");
-        // Reload the page to get the updated list
-        location.reload();
-      }
-    );
+    }).then(function() {
+      console.log("sent new user");
+      // Reload the page to get the updated list
+      location.reload();
+    });
   });
 
-  $("select").selectpicker();
-
+  $("selectpicker").selectpicker();
 });
- 
