@@ -94,7 +94,7 @@ $(document).ready(function() {
     };
 
     // Send the POST request.
-    $.ajax("/api/newuser", {
+    $.ajax("/newuser", {
       type: "POST",
       data: newUser
     }).then(function(data) {
@@ -107,7 +107,7 @@ $(document).ready(function() {
         console.log(window.location);
       }
     }).fail(function(err) {
-      alert(err);
+      alert(JSON.stringify(err));
     });
   });
 
@@ -123,7 +123,7 @@ $(document).ready(function() {
     };
 
     // Send the POST request.
-    $.ajax("/api/finduser", {
+    $.ajax("/finduser", {
       type: "POST",
       data: newTalentSearch
     }).then(function() {
