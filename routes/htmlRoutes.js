@@ -63,7 +63,7 @@ module.exports = function(app) {
     }).then(function(c) {
       if (c === 0) {
         console.log("Adding musician", req.body);
-        pass.cryptPassword("secret", function(err, encrypted) {
+        pass.cryptPassword(req.body.password, function(err, encrypted) {
           var areas = [];
           if (req.body.areas) {
             areas = req.body.areas.split(",");
@@ -128,7 +128,7 @@ module.exports = function(app) {
                   res.render("profile", dbUser, function(){
                     console.log('rendered');
                   });
-                  
+
                 });
             }
 
