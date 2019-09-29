@@ -104,7 +104,7 @@ $(document).ready(function() {
         $('#inputEmail').focus();
         alert(data.error);
       } else {
-        console.log(window.location);
+        $.redirect("/profile", { email: data.email }, "POST", "_blank"); 
       }
     }).fail(function(err) {
       if (err.status !== 0) {
@@ -112,6 +112,26 @@ $(document).ready(function() {
       }
     });
   });
+
+  // login
+  $('#loginSubmit').on('click', function(event){
+    event.preventDefault();
+
+    var user = {
+      email: $('#loginEmail').val(),
+      password: $('#loginPassword').val()
+    };
+    $.ajax("/login", {
+      type: "POST",
+      data: user
+    }).then(function(data) {
+      $.redirect("/profile", { email: data.email }, "POST", "_blank"); 
+    }).fail(function(err) {
+      if (err.status !== 0) {
+        alert(JSON.stringify(err));
+      }
+    });
+  })
 
   // find musicians with specific requirements (area, skill, genre)
   $("#searchTalentSubmit").on("click", function(event) {
@@ -131,7 +151,7 @@ $(document).ready(function() {
     }).then(function() {
       console.log("sent new user");
       // Reload the page to get the updated list
-      location.reload();
+      window.location.replace('/profile');
     });
   });
 
