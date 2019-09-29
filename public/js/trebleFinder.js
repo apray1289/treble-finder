@@ -107,7 +107,9 @@ $(document).ready(function() {
         console.log(window.location);
       }
     }).fail(function(err) {
-      alert(JSON.stringify(err));
+      if (err.status !== 0) {
+        alert(JSON.stringify(err));
+      }
     });
   });
 
