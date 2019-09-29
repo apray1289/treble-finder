@@ -54,7 +54,7 @@ module.exports = function(app) {
   /**
     Add a musician
    */
-  app.post("/api/newuser", function(req, res) {
+  app.post("/newuser", function(req, res) {
     // make sure the email address is unique
     db.User.count({
       where: {
