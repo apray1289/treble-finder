@@ -104,40 +104,26 @@ $(document).ready(function() {
         $('#inputEmail').focus();
         alert(data.error);
       } else {
-        
+        console.log(window.location);
       }
     }).fail(function(err) {
       alert(err);
     });
   });
 
+  // find musicians with specific requirements (area, skill, genre)
   $("#searchTalentSubmit").on("click", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
-    var areas = [];
-    $.each($("#searchArea option:selected"), function() {
-      areas.push($(this).val());
-    });
-    
-    var skills = [];
-    $.each($("#searchTalent option:selected"), function() {
-      skills.push($(this).val());
-    });
-    
-    var genres = [];
-    $.each($("#searchGenre option:selected"), function() {
-      genres.push($(this).val());
-    });
-
     var newTalentSearch = {
-      areas: areas,
-      talents: skills,
-      genres: genres
+      areas: areas(),
+      skills: skills(),
+      genres: genres()
     };
 
     // Send the POST request.
-    $.ajax("/api/newuser", {
+    $.ajax("/api/finduser", {
       type: "POST",
       data: newTalentSearch
     }).then(function() {
