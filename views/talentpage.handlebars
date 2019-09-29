@@ -14,18 +14,18 @@
                 <a class="nav-link" href="/talent">Find Talent</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Edit Profile</a>
+                <a class="nav-link" href="/editprofile">Edit Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Leave A Review</a>
+                <a class="nav-link" href="/reviewpage">Leave A Review</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">My Inbox</a>
+                <a class="nav-link" href="/inbox">My Inbox</a>
             </li>
         </ul>
         <ul class="nav justify-content-end">
-            <li><a href="#" ><span class="glyphicon glyphicon-user rightNav"></span> Sign Up</a></li>
-            <li><a href="#" ><span class="glyphicon glyphicon-log-in rightNav"></span> Login</a></li>
+            <li><a href="/register" ><span class="glyphicon glyphicon-user rightNav"></span> Sign Up</a></li>
+            <li><a href="/login" ><span class="glyphicon glyphicon-log-in rightNav"></span> Login</a></li>
         </ul>
     </div>
     
@@ -35,21 +35,21 @@
     <div class="btn-group">
 
 
-        <select class="selectpicker" multiple data-live-search="true" title="Search By Location">
+        <select class="selectpicker" id='slect-area' multiple data-live-search="true" title="Search By Location">
             {{#each areas}}
             <option>{{name}}</option>
             {{/each}}
         </select>
     </div>
     <div class="btn-group">
-        <select class="selectpicker" multiple data-live-search="true" title="Search By Talent">
-            {{#each talents}}
+        <select class="selectpicker" id='slect-skill' multiple data-live-search="true" title="Search By Talent">
+            {{#each skills}}
             <option>{{name}}</option>
             {{/each}}
         </select>
     </div>
     <div class="btn-group">
-        <select class="selectpicker" multiple data-live-search="true" title="Search By Genre">
+        <select class="selectpicker" id='slect-genre' multiple data-live-search="true" title="Search By Genre">
             {{#each genres}}
             <option>{{name}}</option>
             {{/each}}
@@ -80,4 +80,26 @@
 </div>
 {{/each}}
 
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="reg-modal" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p id='error-text'>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
 </div>
