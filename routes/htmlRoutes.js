@@ -87,58 +87,55 @@ module.exports = function(app) {
             phone: req.body.phone,
             bio: req.body.bio,
             soundLink: req.body.soundLink
-          }).then(function(dbUser) {
-            // Add areas
-            if (areas.length) {
-              dbUser
-                .addAreas(areas, {
-                  where: {
-                    UserId: dbUser.id
-                  }
-                })
-                .then(function() {
-                  console.log("areas added");
-                });
-            }
-
-            // Add skills
-            if (skills.length) {
-              dbUser
-                .addSkills(skills, {
-                  where: {
-                    UserId: dbUser.id
-                  }
-                })
-                .then(function() {
-                  console.log("skills added");
-                });
-            }
-
-            // Add genres
-            if (genres.length) {
-              dbUser
-                .addGenres(genres, {
-                  where: {
-                    UserId: dbUser.id
-                  }
-                })
-                .then(function() {
-                  console.log("genres added");
-
-                  res.render("profile", dbUser, function(){
-                    console.log('rendered');
+          })
+            .then(function(dbUser) {
+              // Add areas
+              if (areas.length) {
+                dbUser
+                  .addAreas(areas, {
+                    where: {
+                      UserId: dbUser.id
+                    }
+                  })
+                  .then(function() {
+                    console.log("areas added");
                   });
+              }
 
-                });
-            }
+              // Add skills
+              if (skills.length) {
+                dbUser
+                  .addSkills(skills, {
+                    where: {
+                      UserId: dbUser.id
+                    }
+                  })
+                  .then(function() {
+                    console.log("skills added");
+                  });
+              }
 
-            
-          }).catch(function (err) {
-            // handle error;
-            res.json({
-              error: err.message
+              // Add genres
+              if (genres.length) {
+                dbUser
+                  .addGenres(genres, {
+                    where: {
+                      UserId: dbUser.id
+                    }
+                  })
+                  .then(function() {
+                    console.log("genres added");
+
+                    res.json(dbUser);
+                  });
+              }
+            })
+            .catch(function(err) {
+              // handle error;
+              res.json({
+                error: err.message
+              });
             });
-          });
         });
       } else {
         // duplicate email address
@@ -149,12 +146,62 @@ module.exports = function(app) {
     });
   });
 
+  // login
+  app.get("/login", function(req, res) {
+    res.render('login');
+  });
+  app.post("/login", function(req, res) {
+    var plainPassword = req.body.password;
+    db.User.findOne({
+      where: {
+        email: req.body.email
+      }
+    }).then(function(dbUser) {
+      // verify passwords match
+      pass.comparePassword(plainPassword, dbUser.password, function(
+        err,
+        match
+      ) {
+        console.log("match", match);
+        if (match) {
+          res.json(dbUser);
+        } else {
+          res.json({
+            error: "Invalid email/password!"
+          });
+        }
+      });
+    });
+  });
+
   // Load Talent page and pass in an Talent by id
   app.get("/profile/:id", function(req, res) {
     db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
       res.render("talentPage", {
         Users: dbUser
       });
+    });
+  });
+
+  app.post("/profile", function(req, res) {
+    console.log(req.body);
+    db.User.findOne({
+      where: {
+        email: req.body.email
+      },
+      include: [
+        {
+          model: db.Area
+        },
+        {
+          model: db.Skill
+        },
+        {
+          model: db.Genre
+        }
+      ]
+    }).then(function(dbUser) {
+      res.render("profile", { user: dbUser });
     });
   });
 
