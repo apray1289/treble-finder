@@ -117,6 +117,14 @@ $(document).ready(function() {
   $('#loginSubmit').on('click', function(event){
     event.preventDefault();
 
+    if (!$("#loginEmail").val()) {
+      return {message: "Missing email!", id: '#loginEmail' };
+    };
+
+    if (!$("#loginPassword").val()) {
+      return {message: "Missing password!", id: '#loginPassword' };
+    };
+
     var user = {
       email: $('#loginEmail').val(),
       password: $('#loginPassword').val()
@@ -137,6 +145,8 @@ $(document).ready(function() {
   $("#searchTalentSubmit").on("click", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
+
+
 
     var newTalentSearch = {
       areas: areas(),
