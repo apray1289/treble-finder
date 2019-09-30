@@ -13,66 +13,144 @@
 
 <div class="container">
   <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="userFirstName">First Name</label>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputFirstName">First Name</label>
+      </div>
+      <div class="col-sm-10">
         <input type="firstname" class="form-control" id="inputFirstName" placeholder="Alexander">
       </div>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="userLastName">Last Name</label>
-          <input type="lastname" class="form-control" id="inputLastName" placeholder="Hamilton">
-        </div>
-        <div class="form-group">
-          <label for="userPassword">Password</label>
-          <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="userEmail">Email</label>
-            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="userPhone">Phone</label>
-            <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
-          </div>
-          <div class="form-group col-md-6">
-            <label for="userArea">Available Locations</label>
-            <select id="inputArea" class="form-control" multiple>
-              {{#each areas}}
-              <option value="{{this.area}}">{{this.area}}</option>
-              {{/each}}
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="talentList">List Your Talents</label>
-            <select class="form-control" id="inputTalentList" multiple>
-              {{#each skills}}
-              <option value="{{this.skill}}">{{this.skill}}</option>
-              {{/each}}
-            </select>
+    </div>
 
-          </div>
-          <div class="form-group">
-            <label for="genreList">What Genres Do You Play?</label>
-            <select class="form-control" id="inputGenreList" multiple>
-              {{#each genres}}
-              <option value="{{this.genre}}">{{this.genre}}</option>
-              {{/each}}
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputLastName">Last Name</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="lastname" class="form-control" id="inputLastName" placeholder="Hamilton">
+      </div>
+    </div>
 
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="userBio">Tell Us About Yourself</label>
-            <textarea class="form-control" id="inputBio" placeholder="I have been performing for 3 years..."
-              rows="3"></textarea>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="userSound">SoundCloud</label>
-            <input type="link" class="form-control" id="inputSound" placeholder="www.mysoundcloudlink.com">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary" id="registerSubmit">Sign Up</button>
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputPassword">Password</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputEmail">Email</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputPhone">Phone</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="phone" class="form-control" id="inputPhone" placeholder="Phone">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputArea">Available Locations</label>
+      </div>
+      <div class="col-sm-10">
+        <select id="inputArea" class="selectpicker" multiple>
+          {{#each areas}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputTalentList">List Your Talents</label>
+      </div>
+      <div class="col-sm-10">
+        <select class="selectpicker" id="inputTalentList" multiple>
+          {{#each skills}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputGenreList">What Genres Do You Play?</label>
+      </div>
+      <div class="col-sm-10">
+        <select class="selectpicker" id="inputGenreList" multiple>
+          {{#each genres}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputBio">Tell Us About Yourself</label>
+      </div>
+      <div class="col-sm-10">
+        <textarea class="form-control" id="inputBio" placeholder="I have been performing for 3 years..."
+          rows="3"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-sm-2">
+        <label for="inputSound">SoundCloud</label>
+      </div>
+      <div class="col-sm-10">
+        <input type="link" class="form-control" id="inputSound" placeholder="www.mysoundcloudlink.com">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col">
+        <button class="btn btn-primary" id="registerSubmit">Sign Up</button>
+      </div>
+    </div>
+
   </form>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Registration Error</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          Modal body..
+        </div>
+
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
 </div>
