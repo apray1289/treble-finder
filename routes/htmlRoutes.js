@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 var db = require("../models");
 var pass = require("../public/js/password.js");
+var isLoggedIn = false;
 
 module.exports = function(app) {
   // Load index page
@@ -125,7 +126,7 @@ module.exports = function(app) {
                   })
                   .then(function() {
                     console.log("genres added");
-
+                    isLoggedIn = true;
                     res.json(dbUser);
                   });
               }
@@ -148,6 +149,7 @@ module.exports = function(app) {
 
   // login
   app.get("/login", function(req, res) {
+    isLoggedIn = false;
     res.render('login');
   });
   app.post("/login", function(req, res) {
@@ -164,6 +166,7 @@ module.exports = function(app) {
       ) {
         console.log("match", match);
         if (match) {
+          isLoggedIn = true;
           res.json(dbUser);
         } else {
           res.json({
@@ -176,6 +179,9 @@ module.exports = function(app) {
 
   // Load Talent page and pass in an Talent by id
   app.get("/profile/:id", function(req, res) {
+    if (!isLoggedIn) {
+      return res.status(403).send('Forbidden');
+    }
     db.User.findOne({ where: { id: req.params.id } }).then(function(dbUser) {
       res.render("talentPage", {
         Users: dbUser
@@ -184,6 +190,9 @@ module.exports = function(app) {
   });
 
   app.post("/profile", function(req, res) {
+    if (!isLoggedIn) {
+      return res.status(403).send('Forbidden');
+    }
     console.log(req.body);
     db.User.findOne({
       where: {
