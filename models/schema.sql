@@ -1,6 +1,8 @@
 DROP DATABASE IF EXISTS treble_finder_db;
 CREATE DATABASE treble_finder_db;
 
+USE treble_finder_db;
+
 INSERT INTO skills (id, name) VALUES (1, 'Accordion');
 INSERT INTO skills (id, name) VALUES (2, 'Bagpipes');
 INSERT INTO skills (id, name) VALUES (3, 'Banjo');
