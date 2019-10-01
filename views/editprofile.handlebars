@@ -28,9 +28,6 @@
     </div>
 </nav>
 
-
-
-
 <div class="container">
     <form>
         <div class="form-row">
@@ -43,37 +40,37 @@
             <div class="form-group col-md-6">
                 <label for="userFirstName">Update First Name</label>
                 <input type="firstname" class="form-control" id="inputFirstName" placeholder="First Name"
-                    value="{{this.firstName}}">
+                    value="{{user.firstName}}">
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="userLastName">Update Last Name</label>
                     <input type="lastname" class="form-control" id="editLastName" placeholder="Last Name"
-                        value="{{this.lastName}}">
+                        value="{{user.lastName}}">
 
                 </div>
                 <div class="form-group">
                     <label for="userPassword">Change Password</label>
                     <input type="password" class="form-control" id="inputPassword" placeholder="Password"
-                        value="{{this.password}}">
+                        value="{{user.password}}">
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="userEmail">Update Email</label>
                         <input type="email" class="form-control" id="inputEmail" placeholder="Email"
-                            value="{{this.email}}">
+                            value="{{user.email}}">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="userPhone">Update Phone</label>
                         <input type="phone" class="form-control" id="editPhone" placeholder="Phone"
-                            value="{{this.phone}}">
+                            value="{{user.phone}}">
                     </div>
 
                     <div class="form-group col-md-6">
                         <label for="updateAreas">Available Locations</label>
-                        {{#each areas}}
-                        <input type="checkbox" id="area-{{this.id}}" checked> {{this.area}}<br>
-                        {{#each nonareas}}
+                        {{#each user.Areas}}
+                        <input type="checkbox" id="area-{{this.id}}" checked> {{this.name}}<br>
+                        {{#each user.nonareas}}
                         <input type="checkbox" id="area-{{this.id}}"> {{this.nonarea}}<br>
                         {{/each}}
                         {{/each}}
@@ -83,10 +80,10 @@
                         <label for="talentList">Update Your Talents</label>
                         <select class="form-control" id="inputTalentList" placeholder="Drums, Guitar, Triangle, etc.">
 
-                            {{#each skills}}
-                            <input type="checkbox" id="skill-{{this.id}}" checked> {{this.skill}}<br>
-                            {{#each nonskills}}
-                            <input type="checkbox" id="skill-{{this.id}}"> {{this.nonskill}}<br>
+                            {{#each user.Skills}}
+                            <input type="checkbox" id="skill-{{this.id}}" checked> {{this.name}}<br>
+                            {{#each user.nonskills}}
+                            <input type="checkbox" id="skill-{{user.id}}"> {{user.nonskill}}<br>
                             {{/each}}
 
                             {{/each}}
@@ -97,10 +94,10 @@
                         <label for="genreList">Update Genres</label>
                         <select class="form-control" id="inputGenreList">
 
-                            {{#each genres}}
-                            <input type="checkbox" id="skill-{{this.id}}" checked> {{this.genre}}<br>
-                            {{#each nongenres}}
-                            <input type="checkbox" id="skill-{{this.id}}"> {{this.nongenre}}<br>
+                            {{#each user.Genres}}
+                            <input type="checkbox" id="skill-{{this.id}}" checked> {{this.name}}<br>
+                            {{#each user.nongenres}}
+                            <input type="checkbox" id="skill-{{user.id}}"> {{user.nongenre}}<br>
                             {{/each}}
 
                             {{/each}}
@@ -110,11 +107,11 @@
                     <div class="form-group">
                         <label for="userBio">Update Bio</label>
                         <textarea class="form-control" id="inputBio" placeholder="I have been performing for 3 years..."
-                            rows="3">{{this.bio}}</textarea>
+                            rows="3">{{user.bio}}</textarea>
                     </div>
                     <div class="form-group col-md-6">
                         <label for="userSound">Update SoundCloud</label>
-                        <input type="link" class="form-control" id="inputSound" value="{{this.soundcloudLink}}"
+                        <input type="link" class="form-control" id="inputSound" value="{{user.soundLink}}"
                             placeholder="www.mysoundcloudlink.com">
                     </div>
                 </div>
