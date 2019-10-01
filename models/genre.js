@@ -10,5 +10,10 @@ module.exports = function (sequelize, DataTypes) {
             type: DataTypes.DATE
         }
     });
+
+    Genre.associate = function (models) {
+        Genre.belongsToMany(models.User, { through: 'UserGenre'});
+    };
+
     return Genre;
 };
