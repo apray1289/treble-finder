@@ -147,6 +147,37 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/profile", function(req, res) {
+    res.render('profile');
+  });
+
+  app.get("/editprofile/:id", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      },
+      include : [
+        {
+          model: db.Area
+        },
+        {
+          model: db.Skill
+        },
+        {
+          model: db.Genre
+        }
+      ]
+    }).then(function(dbUser){
+      console.log(JSON.stringify(dbUser));
+      res.render('editprofile', { user: dbUser });
+    })
+  });
+
+  app.get("/review", function(req, res) {
+    isLoggedIn = false;
+    res.render('reviewpage');
+  });
+
   // login
   app.get("/login", function(req, res) {
     isLoggedIn = false;

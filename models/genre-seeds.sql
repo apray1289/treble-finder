@@ -10,3 +10,4 @@ INSERT INTO genres(name) VALUES("Bluegrass");
 INSERT INTO genres(name) VALUES("Raggae");
 INSERT INTO genres(name) VALUES("Pop");
 INSERT INTO genres(name) VALUES("Soul");
+INSERT INTO genres(name) VALUES("Latin");
