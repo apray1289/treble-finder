@@ -1,0 +1,33 @@
+{
+  "name": "treble-finder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apray1289/treble-finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/apray1289/treble-finder/issues"
+  },
+  "homepage": "https://github.com/apray1289/treble-finder#readme"
+}
