@@ -63,7 +63,7 @@ $(document).ready(function() {
     return results;
   }
 
-
+  // Register new musician
   $("#registerSubmit").on("click", function(event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
