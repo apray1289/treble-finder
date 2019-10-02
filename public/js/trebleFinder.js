@@ -1,78 +1,78 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable quotes */
-$(document).ready(function() {
+$(document).ready(function () {
 
-  function isInvalidForm () {
-    
+  function isInvalidForm() {
+
 
     if (!$("#inputFirstName").val()) {
-      return {message: "Missing first name!", id: '#inputFirstName' };
+      return { message: "Missing first name!", id: '#inputFirstName' };
     };
 
     if (!$("#inputPassword").val()) {
-      return {message: "Missing password!", id: '#inputPassword' };
+      return { message: "Missing password!", id: '#inputPassword' };
     };
 
     if (!$("#inputEmail").val()) {
-      return {message: "Missing email address!", id: '#inputEmail' };
+      return { message: "Missing email address!", id: '#inputEmail' };
     };
 
     if (!$("#inputPhone").val()) {
-      return {message: "Missing phone number!", id: '#inputPhone' };
+      return { message: "Missing phone number!", id: '#inputPhone' };
     };
 
     if (areas().length === 0) {
-      return {message: "Missing available locations!", id: '#inputGenreList' };
+      return { message: "Missing available locations!", id: '#inputGenreList' };
     }
 
     if (skills().length === 0) {
-      return {message: "Missing musical talents!", id: '#inputTalentList' };
+      return { message: "Missing musical talents!", id: '#inputTalentList' };
     }
 
     if (genres().length === 0) {
-      return {message: "Missing musical genres!", id: '#inputGenreList' };
+      return { message: "Missing musical genres!", id: '#inputGenreList' };
     }
 
     return null;
   }
 
-  var areas = function() {
+  var areas = function () {
     var results = [];
-    $.each($("#inputArea option:selected"), function() {
+    $.each($("#inputArea option:selected"), function () {
       results.push($(this).val());
     });
 
     return results;
-  }
+  };
 
-  var skills = function() {
+  var skills = function () {
     var results = [];
-    $.each($("#inputTalentList option:selected"), function() {
+    $.each($("#inputTalentList option:selected"), function () {
       results.push($(this).val());
     });
 
     return results;
-  }
-    
-  var genres = function() {
+  };
+
+  var genres = function () {
     var results = [];
-    $.each($("#inputGenreList option:selected"), function() {
+    $.each($("#inputGenreList option:selected"), function () {
       results.push($(this).val());
     });
 
     return results;
-  }
+  };
 
   // Register new musician
-  $("#registerSubmit").on("click", function(event) {
+  $("#registerSubmit").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
     var errObj = isInvalidForm();
 
-    if (errObj){
+    if (errObj) {
       $('.modal-body').text(errObj.message);
-      $("#myModal").modal();      
+      $("#myModal").modal();
     }
 
     if (errObj) {
@@ -97,32 +97,80 @@ $(document).ready(function() {
     $.ajax("/newuser", {
       type: "POST",
       data: newUser
-    }).then(function(data) {
+    }).then(function (data) {
       console.log("sent new user");
       // Reload the page to get the updated list
-      if (data.error) {        
+      if (data.error) {
         $('#inputEmail').focus();
         alert(data.error);
       } else {
-        $.redirect("/profile", { email: data.email }, "POST", "_blank"); 
+        $.redirect("/profile", { email: data.email }, "POST", "_blank");
       }
-    }).fail(function(err) {
+    }).fail(function (err) {
+      if (err.status !== 0) {
+        alert(JSON.stringify(err));
+      }
+    });
+
+  });
+
+  $("#editProfileSubmit").on("click", function (event) {
+
+    event.preventDefault();
+
+    var errObj = isInvalidForm();
+
+    if (errObj) {
+      $('.modal-body').text(errObj.message);
+      $("#myModal").modal();
+    }
+
+    if (errObj) {
+      $(errObj.id).focus();
+      return;
+    }
+
+    var currentUser = {
+      firstName: $("#inputFirstName").val(),
+      lastName: $("#inputLastName").val(),
+      password: $("#inputPassword").val(),
+      email: $("#inputEmail").val(),
+      phone: $("#inputPhone").val(),
+      areas: areas().join(","),
+      talents: skills().join(","),
+      genres: genres().join(","),
+      bio: $("#inputBio").val(),
+      soundLink: $("#inputSound").val(),
+      id: $("#user-id").attr('data-id')
+    };
+    $.ajax("/editProfile", {
+      type: "PUT",
+      data: currentUser
+    }).then(function (data) {
+      console.log("edited current user");
+      // Reload the page to get the updated list
+      if (data.error) {
+        $('#inputEmail').focus();
+        alert(data.error);
+      } else {
+        $.redirect("/profile", { email: data.email }, "POST", "_blank");
+      }
+    }).fail(function (err) {
       if (err.status !== 0) {
         alert(JSON.stringify(err));
       }
     });
   });
-
   // login
-  $('#loginSubmit').on('click', function(event){
+  $('#loginSubmit').on('click', function (event) {
     event.preventDefault();
 
     if (!$("#loginEmail").val()) {
-      return {message: "Missing email!", id: '#loginEmail' };
+      return { message: "Missing email!", id: '#loginEmail' };
     };
 
     if (!$("#loginPassword").val()) {
-      return {message: "Missing password!", id: '#loginPassword' };
+      return { message: "Missing password!", id: '#loginPassword' };
     };
 
     var user = {
@@ -132,17 +180,17 @@ $(document).ready(function() {
     $.ajax("/login", {
       type: "POST",
       data: user
-    }).then(function(data) {
-      $.redirect("/profile", { email: data.email }, "POST", "_blank"); 
-    }).fail(function(err) {
+    }).then(function (data) {
+      $.redirect("/profile", { email: data.email }, "POST", "_blank");
+    }).fail(function (err) {
       if (err.status !== 0) {
         alert(JSON.stringify(err));
       }
     });
-  })
+  });
 
   // find musicians with specific requirements (area, skill, genre)
-  $("#searchTalentSubmit").on("click", function(event) {
+  $("#searchTalentSubmit").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
 
@@ -158,7 +206,7 @@ $(document).ready(function() {
     $.ajax("/finduser", {
       type: "POST",
       data: newTalentSearch
-    }).then(function() {
+    }).then(function () {
       console.log("sent new user");
       // Reload the page to get the updated list
       window.location.replace('/profile');
