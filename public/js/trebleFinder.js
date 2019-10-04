@@ -38,27 +38,44 @@ $(document).ready(function () {
 
   var areas = function () {
     var results = [];
-    $.each($("#inputArea option:selected"), function () {
+    $.each($("#slect-area option:selected"), function () {
       results.push($(this).val());
     });
+    if (results.length === 0) {
+      $.each($("#inputArea option:selected"), function () {
+        results.push($(this).val());
+      });
+    }
 
     return results;
   };
 
   var skills = function () {
     var results = [];
-    $.each($("#inputTalentList option:selected"), function () {
+    $.each($("#select-skill option:selected"), function () {
       results.push($(this).val());
     });
+    if (results.length === 0) {
+      $.each($("#inputTalentList option:selected"), function () {
+        results.push($(this).val());
+      });
+    }
 
+    
     return results;
   };
 
   var genres = function () {
     var results = [];
-    $.each($("#inputGenreList option:selected"), function () {
+    $.each($("#slect-genre option:selected"), function () {
       results.push($(this).val());
     });
+    if (results.length === 0) {
+      $.each($("#inputGenreList option:selected"), function () {
+        results.push($(this).val());
+      });
+    }
+
 
     return results;
   };
@@ -90,7 +107,7 @@ $(document).ready(function () {
       talents: skills().join(","),
       genres: genres().join(","),
       bio: $("#inputBio").val(),
-      soundLink: $("#inputSound").val()
+      soundLink: $("#inputSound").val(),
     };
 
     // Send the POST request.
@@ -104,7 +121,7 @@ $(document).ready(function () {
         $('#inputEmail').focus();
         alert(data.error);
       } else {
-        $.redirect("/profile", { email: data.email }, "POST", "_blank");
+        window.location = '/profile/' + newUser.email;
       }
     }).fail(function (err) {
       if (err.status !== 0) {
@@ -190,27 +207,26 @@ $(document).ready(function () {
   });
 
   // find musicians with specific requirements (area, skill, genre)
-  $("#searchTalentSubmit").on("click", function (event) {
+  $("#searchTalentSubmit-old").on("click", function (event) {
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-
-
-
+   
     var newTalentSearch = {
       areas: areas(),
-      skills: skills(),
+      skills:skills(),
       genres: genres()
     };
-
+    console.log('newTalentSearch', newTalentSearch);
     // Send the POST request.
-    $.ajax("/finduser", {
-      type: "POST",
-      data: newTalentSearch
-    }).then(function () {
-      console.log("sent new user");
-      // Reload the page to get the updated list
-      window.location.replace('/profile');
-    });
+    var queryString = Object.keys(newTalentSearch).map(key => key + '=' + newTalentSearch[key]).join('&');
+    window.location = "/finduser?" + newTalentSearch;
+    // $.ajax("/finduser", {
+    //   type: "GET",
+    //   data: newTalentSearch
+    // }).then(function (data) {
+    //  // console.log("found talents",data);     
+
+    // });
   });
 
   $("selectpicker").selectpicker();
