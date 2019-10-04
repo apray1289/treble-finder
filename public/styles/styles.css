@@ -11,6 +11,11 @@
   color: teal;
 }
 
+.navbar {
+  background-color: #70a698;
+
+}
+
 
 
 .bgimage {
@@ -30,6 +35,27 @@ text-align: right;
 
 .hero-text {
 float: right;
+}
+
+.textGroup {
+  margin-top: 8rem;
+}
+
+.heroBtn {
+  background-color: #353535;
+  border: .5px solid #70a698;
+}
+
+.heroBtn:hover {
+  background-color: #d3d3d3;
+  border: .5px solid #70a698;
+  color: black;
+}
+
+
+#hero-title {
+  color: #ffffff;
+  
 }
 
 .info-boxes {
@@ -61,4 +87,154 @@ box-shadow: 5px 5px 2px grey;
 .card {
   background-color: #70a698;
   box-shadow: 5px 5px 2px grey;
+  height: 130%;
+  width: 18rem;
+}
+
+.homeCardTitle{
+  color: #dfdfdf;
+}
+
+.allSearchButtons {
+  margin-bottom: 3rem;
+  
+}
+
+#searchTalentSubmit {
+ 
+  background-color: #353535;
+  border: .2px solid #70a698;
+  width: 100%;
+}
+
+#searchTalentSubmit:hover {
+ 
+  background-color: #353535;
+  border: 3px solid #70a698;
+}
+
+.talentCard {
+
+  background-color: #eeee;
+  box-shadow: 3px 3px 1px rgb(175, 175, 175);
+  border: 3px solid #70a698;
+}
+
+.talentCard:hover {
+  background-color: rgba(131, 131, 131, 0.933);
+  border: 3px solid #182c27;
+}
+
+.viewBtn {
+  background-color: #70a698;
+  border: .5px solid #ffffff;
+}
+
+.viewBtn:hover {
+  background-color: #3f3f3f;
+  border: .5px solid #ffffff;
+}
+
+.loginText {
+  color: #ffffff;
+}
+
+.loginText:hover {
+  color: #ffffff;
+  font-weight: bold;
+  border-bottom: 0px;
+}
+
+.jumbotron {
+  background-color: #b1b1b1;
+}
+
+hr {
+  margin-right: 35rem;
+  margin-left: 35rem;
+}
+
+body {
+  min-height: 100%;
+}
+
+#page-container {
+  position: relative;
+  min-height: 150vh;
+  background-color: #eeeeee;
+  
+}
+
+#content-wrap {
+  padding-bottom: 1.5rem;    /* Footer height */
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3.5rem;
+  background-color: #70a698;            /* Footer height */
+}
+.navArea {
+margin-left: 4rem;
+
+}
+
+.mySearch {
+  border: 3px solid #ffffff;
+}
+
+@media only screen and (max-width: 540px) {
+
+  #hero-title {
+    color: #ffffff;
+    margin-top: -6rem;
+    margin-right: 15rem;
+    
+  }
+
+  .heroBtn {
+    margin-right: 20rem;
+    margin-top: 1rem;
+  }
+  #page-container {
+    position: relative;
+    min-height: 180vh;
+    background-color: #eeeeee;
+    
+  }
+ 
+  .bgimage {
+    width:100%;
+    height: 70vh;
+    background: url('/images/musicianhat.jpg');
+    background-repeat: no-repeat;
+    background-position-y: 200%;
+    background-size:cover;
+    background-attachment: fixed;
+  }
+
+  .talentCard {
+    
+    background-color: #eeee;
+    box-shadow: 3px 3px 1px rgb(175, 175, 175);
+    border: 3px solid #70a698;
+    
+  }
+  
+  .card {
+    background-color: #70a698;
+    box-shadow: 5px 5px 2px grey;
+    height: 130%;
+    
+  }
+  .card {
+    background-color: #70a698;
+    box-shadow: 5px 5px 2px grey;
+    height: 130%;
+    width: 100%;
+  }
+
+
 }
