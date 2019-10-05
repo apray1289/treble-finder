@@ -254,9 +254,11 @@ module.exports = function(app) {
         for (var i in data) {
           for (var index in areas) {
             if (data[i].name === areas[index]) {
-              if (data[i].Users[0]) {
-                if (isUnique(userAreaArray, data[i].Users[0])) {
-                  userAreaArray.push(data[i].Users[0]);
+              if (data[i].Users) {
+                for (var u in data[i].Users) {
+                  if (isUnique(userAreaArray, data[i].Users[u])) {
+                    userAreaArray.push(data[i].Users[u]);
+                  }
                 }
               }
             }
@@ -274,9 +276,11 @@ module.exports = function(app) {
           for (var i in data) {
             for (var index in skills) {
               if (data[i].name === skills[index]) {
-                if (data[i].Users[0]) {
-                  if (isUnique(userSkillArray, data[i].Users[0])) {
-                    userSkillArray.push(data[i].Users[0]);
+                if (data[i].Users) {
+                  for (var u in data[i].Users) {
+                    if (isUnique(userSkillArray, data[i].Users[u])) {
+                      userSkillArray.push(data[i].Users[u]);
+                    }
                   }
                 }
               }
@@ -294,9 +298,11 @@ module.exports = function(app) {
             for (var i in data) {
               for (var index in genres) {
                 if (data[i].name === genres[index]) {
-                  if (data[i].Users[0]) {
-                    if (isUnique(userGenreArray, data[i].Users[0])) {
-                      userGenreArray.push(data[i].Users[0]);
+                  if (data[i].Users) {
+                    for (var u in data[i].Users) {
+                      if (isUnique(userGenreArray, data[i].Users[u])) {
+                        userGenreArray.push(data[i].Users[u]);
+                      }
                     }
                   }
                 }
