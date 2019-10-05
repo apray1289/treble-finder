@@ -121,7 +121,7 @@ $(document).ready(function () {
         $('#inputEmail').focus();
         alert(data.error);
       } else {
-        window.location = '/profile/' + newUser.email;
+        window.location = '/profile/' + data.id;
       }
     }).fail(function (err) {
       if (err.status !== 0) {
