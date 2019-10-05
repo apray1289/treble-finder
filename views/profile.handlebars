@@ -1,143 +1,116 @@
-<<<<<<< HEAD <nav class="navbar navbar-expand-lg navbar-light">
+<div id="page-container">
+    <div id="content-wrap">
+        <nav class="navbar navbar-expand-lg navbar-light">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
-        aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse navArea" id="navbarTogglerDemo01">
-
-        <a class="navbar-brand" href="#">Treble Finder</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/talent">Find Talent</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/edit-profile">Edit Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/review">Leave A Review</a>
-            </li>
-        </ul>
-
-        <ul class="nav justify-content-end mr-4">
-            <li class="loginText rightNav"><a href="/register"><span class="loginText">Sign Up</span></a></li>
-            <li class="loginText rightNav"><a href="/login"><span class="loginText">Login</span></a></li>
-        </ul>
-    </div>
-
-
-    </nav>
-    =======
-
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <div class="collapse navbar-collapse navArea" id="navbarTogglerDemo01">
+
                 <a class="navbar-brand" href="#">Treble Finder</a>
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/talent">Find Talent</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/editprofile/{{user.id}}">Edit Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/review">Leave A Review</a>
-                    </li>
+                    {{#if authorized}}
+                    {{!-- <li class="nav-item">
+                        <a class="nav-link" href="/editprofile/{{id}}">Edit Profile</a>
+                    </li> --}}
+                    {{/if}}
+
                 </ul>
-                <ul class="nav">
-                    <li class="mr-3"><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                {{#if authorized}}
+                <ul class="nav justify-content-end mr-4">
+                    <li class="loginText rightNav"><a href="/logout"><span class="loginText">Logout</span></a></li>
                 </ul>
+                {{else}}
+                <ul class="nav justify-content-end mr-4">
+                    <li class="loginText rightNav"><a href="/register"><span class="loginText">Sign Up</span></a></li>
+                    <li class="loginText rightNav"><a href="/login"><span class="loginText">Login</span></a></li>
+                </ul>
+                {{/if}}
             </div>
         </nav>
 
-        >>>>>>> master
+        <div class="container">
 
 
-        <div id="user-id" data-id="{{user.id}}"></div>
-        <div class="row">
-            <div class="mb-3 col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Bio</h4>
-                        {{user.bio}}
+            <h3>Hello! I am {{user.firstName}}</h3>
+            <p>Here's some information about me!Please contact me for your music needs!</p>
+
+            <div class="row" style="margin-top: 2%;">
+                <div class="card-deck col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Music skills</h5>
+                            <ul>
+                                {{#each user.Skills}}
+                                <li style="text-align: left;">{{this.name}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Musical genres</h5>
+                            <ul>
+                                {{#each user.Genres}}
+                                <li style="text-align: left;">{{this.name}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Availability</h5>
+                            <ul>
+                                {{#each user.Areas}}
+                                <li style="text-align: left;">{{this.name}}</li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 5%;">
+                <div class="card-deck col">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Contact Info</h5>
+                            <h6 class="card-text">Phone:</h6>
+                            <p class="card-text">{{user.phone}}</p>
+                            <h6 class="card-text">Email</h6>
+                            <p class="card-text">{{user.email}}</p>
+                            <a href="mailto:{{user.email}}" class="btn btn-primary">Email me</a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">SoundCloud page</h5>
+                            <iframe width="100%" height="200" scrolling="no" frameborder="no" allow="autoplay"
+                                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/850412684&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Biography</h5>
+                            <p class="card-text">{{user.bio}}</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Contact Information</h4>
-                        <span>{{user.firstName}}'s Email: {{user.email}}</span> <br><span>{{user.firstName}}'s
-                            Phone:{{user.phone}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="mb-3 col-sm-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Talents</h4>
 
-                        <ul>
-                            {{#each user.Skills}}
-                            <li>{{name}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <p class="d-flex justify-content-center mt-3">Copyright ©2019 All Right Reserved Treble Finder</p>
         </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Genres</h4>
-
-                        <ul>
-                            {{#each user.Genres}}
-                            <li>{{name}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Areas</h4>
-
-                        <ul>
-                            {{#each user.Areas}}
-                            <li>{{name}}</li>
-                            {{/each}}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 d-flex justify-content-end">
-
-                <button type="button" class="btn btn-secondary"><a href="mailto:{{user.email}}?Subject=Hello%20again"
-                        target="_top">Send
-                        Email</a></button>
-
-                <footer class="footer">
-                    <div class="container">
-                        <p class="d-flex justify-content-center">Copyright ©2019 All Right Reserved Treble Finder</p>
-
-                    </div>
-                </footer>
+    </footer>
+</div>

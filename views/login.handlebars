@@ -11,19 +11,19 @@
             <div class="col-sm-12 d-flex justify-content-center mt-5">
                 <div class="card w-50">
                     <div class="card-body">
-                        <form>
+                        <form action="/login" method="post">
                             <div class="form-group ">
                                 <label for="userLoginEmail">Email</label>
-                                <input type="email" class="form-control" id="loginEmail"
+                                <input type="email" name="email" class="form-control" id="userLoginEmail"
                                     placeholder="georgewashington@yahoo.com">
                             </div>
 
                             <div class="form-group">
                                 <label for="loginPassword">Password</label>
-                                <input type="password" class="form-control" id="loginPassword" placeholder="Password">
+                                <input type="password" name="password" class="form-control" id="loginPassword" placeholder="Password">
                             </div>
 
-                            <button class="btn btn-primary btn-block mt-4" id="loginSubmit">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block mt-4">Login</button>
                         </form>
                     </div>
                 </div>

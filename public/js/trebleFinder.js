@@ -198,7 +198,8 @@ $(document).ready(function () {
       type: "POST",
       data: user
     }).then(function (data) {
-      $.redirect("/profile", { email: data.email }, "POST", "_blank");
+      // console.log("/profile?" + data.id);
+      // window.location = "/profile?" + data.id;
     }).fail(function (err) {
       if (err.status !== 0) {
         alert(JSON.stringify(err));
